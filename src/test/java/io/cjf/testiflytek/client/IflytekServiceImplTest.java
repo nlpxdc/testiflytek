@@ -40,21 +40,22 @@ class IflytekServiceImplTest {
         long sliceNum = filelength/1024/1024/10 + 1;
         boolean seperate = false;
         byte speakersNum = 1;
-        final String taskId = iflytekService.prepare(filename, filelength, sliceNum, seperate, speakersNum);
+        String language = "en";
+        final String taskId = iflytekService.prepare(filename, filelength, sliceNum, seperate, speakersNum, language);
         assertTrue(taskId != null);
         assertTrue(!taskId.isEmpty());
     }
 
     @Test
     void getProgress(){
-        String taskId = "749bbb0a84fd4f3f8480d32cfcffc03d";
+        String taskId = "61b91fc8332f47f0b5500769207b89d9";
         final Byte progress = iflytekService.getProgress(taskId);
         assertTrue(progress == 0);
     }
 
     @Test
     void uploadSlice2() throws IOException {
-        String taskId = "749bbb0a84fd4f3f8480d32cfcffc03d";
+        String taskId = "61b91fc8332f47f0b5500769207b89d9";
         String sliceId = "aaaaaaaaaa";
         String pathname = "speech/eleme.m4a";
         final File file = new File(pathname);
@@ -65,7 +66,7 @@ class IflytekServiceImplTest {
 
     @Test
     void uploadFile() throws IOException {
-        String taskId = "749bbb0a84fd4f3f8480d32cfcffc03d";
+        String taskId = "61b91fc8332f47f0b5500769207b89d9";
         String pathname = "speech/myheartwillgoon.m4a";
         final File file = new File(pathname);
         iflytekService.uploadFile(taskId, file);
@@ -73,14 +74,14 @@ class IflytekServiceImplTest {
 
     @Test
     void merge(){
-        String taskId = "749bbb0a84fd4f3f8480d32cfcffc03d";
+        String taskId = "61b91fc8332f47f0b5500769207b89d9";
         final Boolean merge = iflytekService.merge(taskId);
         assertTrue(merge);
     }
 
     @Test
     void getResult(){
-        String taskId = "749bbb0a84fd4f3f8480d32cfcffc03d";
+        String taskId = "61b91fc8332f47f0b5500769207b89d9";
         final JSONArray results = iflytekService.getResult(taskId);
         assertNotNull(results);
         assertTrue(results.size() != 0);

@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 public interface IflytekService {
-    String prepare(String file_name, Long file_len, Long slice_num, boolean seperate, byte speakersNum);
+    String prepare(String file_name, Long file_len, Long slice_num, boolean seperate, byte speakersNum, String language);
 
     Byte getProgress(String taskId);
 
