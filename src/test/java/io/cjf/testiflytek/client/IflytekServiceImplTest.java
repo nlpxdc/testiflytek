@@ -38,7 +38,7 @@ class IflytekServiceImplTest {
         final String filename = file.getName();
         final long filelength = file.length();
         long sliceNum = filelength/1024/1024/10 + 1;
-        boolean seperate = true;
+        boolean seperate = false;
         byte speakersNum = 0;
         final String taskId = iflytekService.prepare(filename, filelength, sliceNum, seperate, speakersNum);
         assertTrue(taskId != null);
@@ -47,14 +47,14 @@ class IflytekServiceImplTest {
 
     @Test
     void getProgress(){
-        String taskId = "fedbc8563e124d938e0a80a359e3ff02";
+        String taskId = "af4a13285fe4471bb44e2a8f76601ce1";
         final Byte progress = iflytekService.getProgress(taskId);
         assertTrue(progress == 0);
     }
 
     @Test
     void uploadSlice2() throws IOException {
-        String taskId = "fedbc8563e124d938e0a80a359e3ff02";
+        String taskId = "af4a13285fe4471bb44e2a8f76601ce1";
         String sliceId = "aaaaaaaaaa";
         String pathname = "speech/eleme.m4a";
         final File file = new File(pathname);
@@ -65,7 +65,7 @@ class IflytekServiceImplTest {
 
     @Test
     void uploadFile() throws IOException {
-        String taskId = "fedbc8563e124d938e0a80a359e3ff02";
+        String taskId = "af4a13285fe4471bb44e2a8f76601ce1";
         String pathname = "speech/alipay6s2.m4a";
         final File file = new File(pathname);
         iflytekService.uploadFile(taskId, file);
@@ -73,14 +73,14 @@ class IflytekServiceImplTest {
 
     @Test
     void merge(){
-        String taskId = "fedbc8563e124d938e0a80a359e3ff02";
+        String taskId = "af4a13285fe4471bb44e2a8f76601ce1";
         final Boolean merge = iflytekService.merge(taskId);
         assertTrue(merge);
     }
 
     @Test
     void getResult(){
-        String taskId = "fedbc8563e124d938e0a80a359e3ff02";
+        String taskId = "af4a13285fe4471bb44e2a8f76601ce1";
         final JSONArray results = iflytekService.getResult(taskId);
         assertNotNull(results);
         assertTrue(results.size() != 0);
