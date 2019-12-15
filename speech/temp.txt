@@ -1,0 +1,1 @@
+ffmpeg -i oyo.m4a -ac 1 -ar 8000  -b:a 14k -bufsize 14k oyo2.m4a
