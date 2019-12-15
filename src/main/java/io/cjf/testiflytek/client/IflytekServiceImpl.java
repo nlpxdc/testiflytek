@@ -50,7 +50,7 @@ public class IflytekServiceImpl implements IflytekService {
     public static final int SLICE_SIZE = 1024 * 1024 * 10;
 
     @Override
-    public String prepare(String file_name, Long file_len, Long slice_num) {
+    public String prepare(String file_name, Long file_len, Long slice_num, boolean seperate, byte speakersNum) {
 
         final Date now = new Date();
         final long nowTimestamp = now.getTime();
@@ -65,8 +65,8 @@ public class IflytekServiceImpl implements IflytekService {
         form.put("file_len", file_len);
         form.put("file_name", file_name);
         form.put("slice_num", slice_num);
-        form.put("has_seperate", true);
-        form.put("speaker_number", 2);
+        form.put("has_seperate", seperate);
+        form.put("speaker_number", speakersNum);
         form.put("lfasr_type", 0);
 
         final String jsonStr = iflytekApi.prepare(form);

@@ -33,26 +33,28 @@ class IflytekServiceImplTest {
 
     @Test
     void prepare() {
-        String pathname = "speech/oyo.m4a";
+        String pathname = "speech/alipay6s2.m4a";
         final File file = new File(pathname);
         final String filename = file.getName();
         final long filelength = file.length();
         long sliceNum = filelength/1024/1024/10 + 1;
-        final String taskId = iflytekService.prepare(filename, filelength, sliceNum);
+        boolean seperate = true;
+        byte speakersNum = 6;
+        final String taskId = iflytekService.prepare(filename, filelength, sliceNum, seperate, speakersNum);
         assertTrue(taskId != null);
         assertTrue(!taskId.isEmpty());
     }
 
     @Test
     void getProgress(){
-        String taskId = "d35427ae72644e87a9f04cf82a52e6a6";
+        String taskId = "534ac8d6d8034d279acfa04e60cad01a";
         final Byte progress = iflytekService.getProgress(taskId);
         assertTrue(progress == 0);
     }
 
     @Test
     void uploadSlice2() throws IOException {
-        String taskId = "d35427ae72644e87a9f04cf82a52e6a6";
+        String taskId = "534ac8d6d8034d279acfa04e60cad01a";
         String sliceId = "aaaaaaaaaa";
         String pathname = "speech/eleme.m4a";
         final File file = new File(pathname);
@@ -63,22 +65,22 @@ class IflytekServiceImplTest {
 
     @Test
     void uploadFile() throws IOException {
-        String taskId = "d35427ae72644e87a9f04cf82a52e6a6";
-        String pathname = "speech/oyo.m4a";
+        String taskId = "534ac8d6d8034d279acfa04e60cad01a";
+        String pathname = "speech/alipay6s2.m4a";
         final File file = new File(pathname);
         iflytekService.uploadFile(taskId, file);
     }
 
     @Test
     void merge(){
-        String taskId = "d35427ae72644e87a9f04cf82a52e6a6";
+        String taskId = "534ac8d6d8034d279acfa04e60cad01a";
         final Boolean merge = iflytekService.merge(taskId);
         assertTrue(merge);
     }
 
     @Test
     void getResult(){
-        String taskId = "d35427ae72644e87a9f04cf82a52e6a6";
+        String taskId = "534ac8d6d8034d279acfa04e60cad01a";
         final JSONArray results = iflytekService.getResult(taskId);
         assertNotNull(results);
         assertTrue(results.size() != 0);
