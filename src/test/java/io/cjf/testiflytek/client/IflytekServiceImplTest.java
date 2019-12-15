@@ -33,7 +33,7 @@ class IflytekServiceImplTest {
 
     @Test
     void prepare() {
-        String pathname = "speech/lvse.m4a";
+        String pathname = "speech/nba.m4a";
         final File file = new File(pathname);
         final String filename = file.getName();
         final long filelength = file.length();
@@ -47,14 +47,14 @@ class IflytekServiceImplTest {
 
     @Test
     void getProgress(){
-        String taskId = "d17ba942bd574d5585d5220c14f04d48";
+        String taskId = "7f880fcc05834281812f6281752ba542";
         final Byte progress = iflytekService.getProgress(taskId);
         assertTrue(progress == 0);
     }
 
     @Test
     void uploadSlice2() throws IOException {
-        String taskId = "d17ba942bd574d5585d5220c14f04d48";
+        String taskId = "7f880fcc05834281812f6281752ba542";
         String sliceId = "aaaaaaaaaa";
         String pathname = "speech/eleme.m4a";
         final File file = new File(pathname);
@@ -65,22 +65,22 @@ class IflytekServiceImplTest {
 
     @Test
     void uploadFile() throws IOException {
-        String taskId = "d17ba942bd574d5585d5220c14f04d48";
-        String pathname = "speech/lvse.m4a";
+        String taskId = "7f880fcc05834281812f6281752ba542";
+        String pathname = "speech/nba.m4a";
         final File file = new File(pathname);
         iflytekService.uploadFile(taskId, file);
     }
 
     @Test
     void merge(){
-        String taskId = "d17ba942bd574d5585d5220c14f04d48";
+        String taskId = "7f880fcc05834281812f6281752ba542";
         final Boolean merge = iflytekService.merge(taskId);
         assertTrue(merge);
     }
 
     @Test
     void getResult(){
-        String taskId = "d17ba942bd574d5585d5220c14f04d48";
+        String taskId = "7f880fcc05834281812f6281752ba542";
         final JSONArray results = iflytekService.getResult(taskId);
         assertNotNull(results);
         assertTrue(results.size() != 0);
